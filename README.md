@@ -5,9 +5,11 @@ Purdue GDSLab (https://gdsl.org) and the collaborators collected, processed, and
 ## Code Implementation
 **(1) Preparation**: Please download the point cloud from the [TBS STAC](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3) repository. We recommend checking *d2spy* if you are not interested in the entire TBS region. You can download the data only for your ROI (region of interest). Please check the guide at https://py.d2s.org.
 
-**(2) Copy (or download) the `chm_generation.py`** to your workplace.
+**(2) Copy (or download) the `gen_chm.py`** to your workplace.
 
 **(3) Set the parameters in the code** as you wish.
+
+<u> **Laspy, Numpy, GDAL, rasterio* are required. </u>
 
 
 ## Brief Data Description
