@@ -1,28 +1,41 @@
-# CHM generation from high-quality UAS lidar data for Amazon
-Purdue GDSLab (https://gdsl.org) and the collaborators collected, processed, and published high-quality, comprehensive UAS (Uncrewed Aerial System) data for the Amazon rainforest. This Git Hub repository provides an exemplary Python code to generate a CHM (Canopy Height Model) from the published lidar data (point cloud and DTM; Digital Terrain Model) based on a user-defined percentile value and spatial resolution.
 
+# PREPARATION
+## System Environment Setup
+Please set up a Conda environment or an equivalent system environment capable of running the released code by referring to the provided Dockerfile. _Note that this code was developed and tested on **Linux Ubuntu 22.04.5 LTS.**_
 
-## Code Implementation
-**(1) Preparation**: Please download the point cloud from the [TBS STAC](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3) repository. We recommend checking *d2spy* if you are not interested in the entire TBS region. You can download the data only for your ROI (region of interest). Please check the guide at https://py.d2s.org.
+## Data
+- To run the **CHM generation code**, a point cloud file (_.las_ or _.laz_) is required. This point cloud **must** include normalized height information as an additional `HeightAboveGround` attribute. If you wish to use our data ([TBS dataset](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)), please note that the dataset is voluminous due to its large spatial extent covering multiple biomes in the Amazon rainforest. Therefore, we recommend using cloud-optimized technologies, as our published data products are provided in cloud-optimized formats (COG and COPC), which are supported by most popular geospatial libraries. For convenience, we provide a **sample point cloud.las** `sample_for_chm_gen.las` to allow users to test the code.
 
-**(2) Copy (or download) the `gen_chm.py`** to your workplace.
+- To run the **global registration** code, three types of data products are required: *point clouds, DTMs, and CHMs*, specifically from two adjacent areas with spatial overlap. Please refer to our [data description](URL_after_publication) to understand the required data formats and the overall workflow. The DTMs and CHMs from the two adjacent regions **must** share the same spatial resolution.
 
-**(3) Set the parameters in the code** as you wish.
+- The provided codes are optimized for the coordinate reference system EPSG:32718, which is used at the Tiputini Biodiversity Station in the Ecuadorian Amazon. If your data use a different coordinate system, code modifications may be required.
+<br><br>
+---
+# CODE EXECUTION
+## CHM Generation Code
+1. Prepare a point cloud (_see the **DATA** section_).
+2. Copy (or download) `gen_chm.py` to your working directory.
+3. Define the file paths and set the parameters in the code according to your requirements.
 
-<u> **Laspy, Numpy, GDAL, rasterio* are required. </u>
+## Global Registration Code
+This code is released with the intention of providing an alternative solution to address practical limitations that may be encountered by research groups with objectives similar to ours, namely conducting seamless large-area surveys using UAS.
 
+To run the provided Global Registration code smoothly, users are expected to have an understanding of the methodological background underlying this approach, LiDAR products, geospatial data registration, and prior experience in developing and executing related code.
+<br><br>
+1. Prepare the data products (_see the **DATA** section_)
 
-## Brief Data Description
-We provide high-quality UAS data over **700-ha of Tiputini Biodiversity Station** (TBS, https://www.tiputini.com) in the Ecuadorian Amazon.
-The dataset consists of:
-- *Multispectral* orthomosaics (three RGB and four multispectral bands)  
-- *Multispectral*-derived DSMs (Digital Surface Model)  
-- *LiDAR* point clouds  
-- *LiDAR*-derived DEMs (Digital Elevation Model; i.e., DTM, DSM, and CHMs)
+2. Copy (or download) all codes under the `global_registration` folder to your working directory.
 
-**Data Repository**:
-You can download the data from a Data-to-Science (D2S) central STAC repository: [TBS STAC Catalog](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)
+3. Apply the `estimate_horizontal_shift` function to two adjacent CHMs. This function will estimate the global shifts (in the X and Y directions) between two UAS flights. _You **must** run the `mutual_information_2d` function together._
 
-Please cite the information following when you use the data.
-> Jung, M., Chang, A., Jung, J., Cannon, C., Rivas-Torres, G.  (2025). Comprehensive high-quality UAS data for Amazon rainforest: Tiputini Biodiversity Station. Purdue Unversity Research Repository. https://doi.org/10.4231/FV2H-VR18
+4. Apply the `transform_image` function to the sensed CHM and the corresponding DTM using the estimated shifts. The shifted CHM will be the aligned CHM with the reference CHM.
+
+5. Apply the `estimate_vertical_shift` function to the reference DTM and the sensed, horizontally shifted DTM.
+
+6. Apply the `transform_image_vertical` function to the sensed, horizontally shifted DTM. The shifted DTM will be the final aligned DTM with the reference DTM.
+
+7. Edit `point_cloud_shift.json` using all estimated shifts (from Steps **3** and **5**).
+
+8. Run the PDAL pipeline using `point_cloud_shift.json`. The shifted point cloud will be globally aligned with the reference point cloud.
+> ```bash pdal pipeline config.json ```
 
