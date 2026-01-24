@@ -1,3 +1,12 @@
+This GitHub repository provides custom code for globally registering adjacent UAS (Uncrewed Aerial System) LiDAR-derived point clouds and generating CHMs (Canopy Height Models) from the point clouds. All code in this repository was developed to support the creation of high-quality, comprehensive UAS datasets of the Amazon rainforest, collected, processed, and publicly published by Purdue GDSLab (https://gdsl.org) and its collaborators. A detailed description of the code and the data is available **[here](HERE)**.
+![Multispectral Orthomosaic](./images/ms_img.png)
+### Citation
+- For DATA: You can download the data from a Data-to-Science (D2S) central STAC repository: [TBS STAC Catalog](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)
+  > Jung, M., Chang, A., Jung, J., Cannon, C., Rivas-Torres, G.  (2025). Comprehensive high-quality UAS data for Amazon rainforest: Tiputini Biodiversity Station. _Purdue Unversity Research Repository_. https://doi.org/10.4231/FV2H-VR18
+- For METHOD
+  > Jung, M., Chang, A., Cannon, C., Rivas-Torres, G., Jung, J. (in press). Comprehensive uncrewed aerial system data for Amazon rainforest at Tiputini Biodiversity Station, Ecuador, _Scientific Journal_
+
+---
 
 # PREPARATION
 ## System Environment Setup
@@ -9,6 +18,7 @@ Please set up a Conda environment or an equivalent system environment capable of
 - To run the **global registration** code, three types of data products are required: *point clouds, DTMs, and CHMs*, specifically from two adjacent areas with spatial overlap. Please refer to our [data description](URL_after_publication) to understand the required data formats and the overall workflow. The DTMs and CHMs from the two adjacent regions **must** share the same spatial resolution.
 
 - The provided codes are optimized for the coordinate reference system EPSG:32718, which is used at the Tiputini Biodiversity Station in the Ecuadorian Amazon. If your data use a different coordinate system, code modifications may be required.
+
 <br><br>
 ---
 # CODE EXECUTION
@@ -28,14 +38,19 @@ To run the provided Global Registration code smoothly, users are expected to hav
 
 3. Apply the `estimate_horizontal_shift` function to two adjacent CHMs. This function will estimate the global shifts (in the X and Y directions) between two UAS flights. _You **must** run the `mutual_information_2d` function together._
 
-4. Apply the `transform_image_vertical` function to the sensed CHM and the corresponding DTM using the estimated shifts. The shifted CHM will be the aligned CHM with the reference CHM.
+4. Apply the `transform_image_horizontal` function to the sensed CHM and the corresponding DTM using the estimated shifts.
+   - The shifted CHM will be the aligned CHM with the reference CHM.
 
-5. Apply the `estimate_vertical_shift` function to the reference DTM and the sensed, horizontally shifted DTM.
+6. Apply the `estimate_vertical_shift` function to the reference DTM and the sensed, horizontally shifted DTM.
 
-6. Apply the `transform_image_vertical` function to the sensed, horizontally shifted DTM. The shifted DTM will be the final aligned DTM with the reference DTM.
+7. Apply the `transform_image_vertical` function to the sensed, horizontally shifted DTM.
+   - The shifted DTM will be the final aligned DTM with the reference DTM.
 
-7. Edit `point_cloud_shift.json` using all estimated shifts (from Steps **3** and **5**).
+9. Edit `point_cloud_shift.json` using all estimated shifts (from Steps **3** and **5**).
 
-8. Run the PDAL pipeline using `point_cloud_shift.json`. The shifted point cloud will be globally aligned with the reference point cloud.
-> ```bash pdal pipeline config.json ```
-
+10. Run the PDAL pipeline using `point_cloud_shift.json`.
+    - The shifted point cloud will be globally aligned with the reference point cloud.
+```bash
+pdal pipeline config.json
+```
+    
