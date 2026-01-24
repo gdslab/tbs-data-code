@@ -1,13 +1,14 @@
-This GitHub repository provides custom code for globally registering adjacent UAS (Uncrewed Aerial System) LiDAR-derived point clouds and generating CHMs (Canopy Height Models) from the point clouds. All code in this repository was developed to support the creation of high-quality, comprehensive UAS datasets of the Amazon rainforest, collected, processed, and publicly published by Purdue GDSLab (https://gdsl.org) and its collaborators. A detailed description of the code and the data is available **[here](HERE)**.
 ![Multispectral Orthomosaic](./images/ms_img.png)
+<br><br>
+This GitHub repository provides custom code for globally registering adjacent UAS (Uncrewed Aerial System) LiDAR-derived point clouds and generating CHMs (Canopy Height Models) from the point clouds. All code in this repository was developed to support the creation of high-quality, comprehensive UAS datasets of the Amazon rainforest, collected, processed, and publicly published by Purdue GDSLab (https://gdsl.org) and its collaborators. A detailed description of the code and the data is available **[here](HERE)**.
+
 ### Citation
 - For DATA: You can download the data from a Data-to-Science (D2S) central STAC repository: [TBS STAC Catalog](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)
   > Jung, M., Chang, A., Jung, J., Cannon, C., Rivas-Torres, G.  (2025). Comprehensive high-quality UAS data for Amazon rainforest: Tiputini Biodiversity Station. _Purdue Unversity Research Repository_. https://doi.org/10.4231/FV2H-VR18
 - For METHOD
-  > Jung, M., Chang, A., Cannon, C., Rivas-Torres, G., Jung, J. (in press). Comprehensive uncrewed aerial system data for Amazon rainforest at Tiputini Biodiversity Station, Ecuador, _Scientific Journal_
+  > Jung, M., Chang, A., Cannon, C., Rivas-Torres, G., Jung, J. (_in press_). Comprehensive uncrewed aerial system data for Amazon rainforest at Tiputini Biodiversity Station, Ecuador, _Scientific Journal_
 
----
-
+<br><br>
 # PREPARATION
 ## System Environment Setup
 Please set up a Conda environment or an equivalent system environment capable of running the released code by referring to the provided Dockerfile. _Note that this code was developed and tested on **Linux Ubuntu 22.04.5 LTS.**_
@@ -20,7 +21,7 @@ Please set up a Conda environment or an equivalent system environment capable of
 - The provided codes are optimized for the coordinate reference system EPSG:32718, which is used at the Tiputini Biodiversity Station in the Ecuadorian Amazon. If your data use a different coordinate system, code modifications may be required.
 
 <br><br>
----
+
 # CODE EXECUTION
 ## CHM Generation Code
 1. Prepare a point cloud (_see the **DATA** section_).
