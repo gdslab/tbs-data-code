@@ -28,7 +28,7 @@ To run the provided Global Registration code smoothly, users are expected to hav
 
 3. Apply the `estimate_horizontal_shift` function to two adjacent CHMs. This function will estimate the global shifts (in the X and Y directions) between two UAS flights. _You **must** run the `mutual_information_2d` function together._
 
-4. Apply the `transform_image` function to the sensed CHM and the corresponding DTM using the estimated shifts. The shifted CHM will be the aligned CHM with the reference CHM.
+4. Apply the `transform_image_vertical` function to the sensed CHM and the corresponding DTM using the estimated shifts. The shifted CHM will be the aligned CHM with the reference CHM.
 
 5. Apply the `estimate_vertical_shift` function to the reference DTM and the sensed, horizontally shifted DTM.
 
