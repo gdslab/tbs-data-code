@@ -11,7 +11,7 @@ This GitHub repository provides custom code for globally registering adjacent UA
 <br><br>
 # PREPARATION
 ## System Environment Setup
-Please set up a Conda environment or an equivalent system environment capable of running the released code by referring to the provided Dockerfile. _Note that this code was initially developed and tested on **Linux Ubuntu 22.04.5 LTS.**_
+Please set up a Conda environment or an equivalent system environment capable of running the released code. For those who prefer a containerized environment, the provided Dockerfile can be used to build a consistent runtime for these scripts. _Note that this code was initially developed and tested on **Linux Ubuntu 22.04.5 LTS.**_
 
 ## Data
 - To run the **CHM generation code**, a point cloud file (_.las_ or _.laz_) is required. This point cloud **must** include normalized height information as an additional `HeightAboveGround` attribute. If you wish to use our data ([TBS dataset](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)), please note that the dataset is voluminous due to its large spatial extent covering multiple biomes in the Amazon rainforest. Therefore, we recommend using cloud-optimized technologies, as our published data products are provided in cloud-optimized formats (COG and COPC), which are supported by most popular geospatial libraries. For convenience, we provide a **sample point cloud.las** `sample_for_chm_gen.las` to allow users to test the code.
