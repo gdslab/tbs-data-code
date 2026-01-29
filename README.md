@@ -1,6 +1,6 @@
 ![Multispectral Orthomosaic](./images/ms_img.png)
 <br><br>
-This GitHub repository provides custom code for globally registering adjacent UAS (Uncrewed Aerial System) LiDAR-derived point clouds and generating CHMs (Canopy Height Models) from the point clouds. All code in this repository was developed to support the creation of high-quality, comprehensive UAS datasets of the Amazon rainforest, collected, processed, and publicly published by Purdue GDSLab (https://gdsl.org) and its collaborators. A detailed description of the code and the data is available **[HERE, Will connected soon](URL_after_publication)**.
+This GitHub repository provides custom code for globally registering adjacent UAS (Uncrewed Aerial System) LiDAR-derived point clouds and generating CHMs (Canopy Height Models) from the point clouds. All code in this repository was developed to support the creation of high-quality, comprehensive UAS datasets of the Amazon rainforest, collected, processed, and publicly published by Purdue GDSLab (https://gdsl.org) and its collaborators. A detailed description of the code and the data is available **[HERE, _Will connected soon_](URL_after_publication)**.
 
 ### Citation
 - For DATA: You can download the data from a Data-to-Science (D2S) central STAC repository: [TBS STAC Catalog](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)
@@ -16,7 +16,7 @@ Please set up a Conda environment or an equivalent system environment capable of
 ## Data
 - To run the **CHM generation code**, a point cloud file (_.las_ or _.laz_) is required. This point cloud **must** include normalized height information as an additional `HeightAboveGround` attribute. If you wish to use our data ([TBS dataset](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)), please note that the dataset is voluminous due to its large spatial extent covering multiple biomes in the Amazon rainforest. Therefore, we recommend using cloud-optimized technologies, as our published data products are provided in cloud-optimized formats (COG and COPC), which are supported by most popular geospatial libraries. For convenience, we provide a **sample point cloud.las** `sample_for_chm_gen.las` to allow users to test the code.
 
-- To run the **global registration** code, three types of data products are required: *point clouds, DTMs, and CHMs*, specifically from two adjacent areas with spatial overlap. Please refer to our [data description, will connected soon](URL_after_publication) to understand the required data formats and the overall workflow. The DTMs and CHMs from the two adjacent regions **must** share the same spatial resolution.
+- To run the **global registration** code, three types of data products are required: *point clouds, DTMs, and CHMs*, specifically from two adjacent areas with spatial overlap. Please refer to our [data description, _will connected soon_](URL_after_publication) to understand the required data formats and the overall workflow. The DTMs and CHMs from the two adjacent regions **must** share the same spatial resolution.
 
 - The provided codes are optimized for the coordinate reference system EPSG:32718, which is used at the Tiputini Biodiversity Station in the Ecuadorian Amazon. If your data use a different coordinate system, code modifications may be required.
 
