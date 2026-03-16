@@ -6,7 +6,9 @@ This GitHub repository provides custom code for globally registering adjacent UA
 - For DATA: You can download the data from a Data-to-Science (D2S) central STAC repository: [TBS STAC Catalog](https://stac.d2s.org/collections/20290e7b-cdb1-4f5e-bda3-fc9929169fb3)
   > Jung, M., Chang, A., Jung, J., Cannon, C., Rivas-Torres, G.  (2025). Comprehensive high-quality UAS data for Amazon rainforest: Tiputini Biodiversity Station. _Purdue Unversity Research Repository_. https://doi.org/10.4231/FV2H-VR18
 - For METHOD
-  > Jung, M., Chang, A., Cannon, C., Rivas-Torres, G., Jung, J. (_in press_). Comprehensive uncrewed aerial system data for Amazon rainforest at Tiputini Biodiversity Station, Ecuador, _Scientific Data_
+  > Jung, M., Chang, A., Cannon, C., Rivas-Torres, G., Jung, J. (2026). Comprehensive uncrewed aerial system data for Amazon rainforest at Tiputini Biodiversity Station, Ecuador, _Scientific Data_. https://doi.org/10.1038/s41597-026-06894-0
+
+
 
 <br><br>
 # PREPARATION
